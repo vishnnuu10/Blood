@@ -1,0 +1,601 @@
+/* UserDonorList.css - Blood Group Badge Fix */
+.donor-list-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 50%, #fff5f5 100%);
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+.donor-list-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.floating-blood {
+  position: absolute;
+  font-size: 2rem;
+  opacity: 0.1;
+  animation: floatBlood 15s ease-in-out infinite;
+}
+
+.floating-blood-1 {
+  top: 15%;
+  left: 8%;
+  animation-delay: 0s;
+}
+
+.floating-blood-2 {
+  top: 65%;
+  right: 10%;
+  animation-delay: 5s;
+}
+
+.floating-blood-3 {
+  bottom: 20%;
+  left: 15%;
+  animation-delay: 10s;
+}
+
+@keyframes floatBlood {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-30px) rotate(120deg);
+  }
+  66% {
+    transform: translateY(20px) rotate(240deg);
+  }
+}
+
+.donor-list-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.donor-list-header {
+  text-align: center;
+  margin-bottom: 40px;
+  animation: slideDown 0.8s ease-out;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.donor-list-title {
+  font-weight: 700;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 16px;
+  font-size: 3rem;
+}
+
+.donor-list-title span {
+  color: #2d3436;
+  -webkit-text-fill-color: #2d3436;
+}
+
+.donor-list-subtitle {
+  color: #636e72;
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+.donor-list-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  box-shadow: 0 5px 20px rgba(255, 107, 107, 0.08);
+  min-width: 200px;
+  text-align: center;
+  padding: 20px;
+}
+
+.stat-number {
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 8px;
+  font-size: 2.5rem;
+  line-height: 1;
+}
+
+.stat-label {
+  color: #636e72;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.request-blood-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 600;
+  text-transform: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.3);
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.request-blood-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+}
+
+.search-filter-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  box-shadow: 0 5px 20px rgba(255, 107, 107, 0.08);
+  margin-bottom: 40px;
+}
+
+.search-filter-content {
+  padding: 30px !important;
+}
+
+.search-field .MuiOutlinedInput-root,
+.filter-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+}
+
+.results-count {
+  color: #636e72;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.donors-grid {
+  margin-top: 20px;
+}
+
+/* DONOR CARD - FIXED BLOOD GROUP BADGE */
+.donor-card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.1);
+  transition: all 0.4s ease;
+  animation: cardAppear 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(30px);
+  position: relative;
+  overflow: visible;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px; /* Add space for the blood group badge */
+}
+
+@keyframes cardAppear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.donor-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(255, 107, 107, 0.15);
+}
+
+.donor-card-content {
+  padding: 35px 25px 25px 25px !important; /* Increased top padding for badge */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+/* FIXED BLOOD GROUP BADGE - Now properly positioned */
+.blood-group-badge {
+  position: absolute;
+  top: -15px; /* Position above the card */
+  right: 20px;
+  color: white;
+  padding: 10px 18px; /* Slightly larger padding */
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  min-width: 80px; /* Ensure enough width for all blood groups */
+  text-align: center;
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 2px solid white;
+  margin-top: 8%; /* White border to make it stand out */
+}
+
+/* Donor Info - Fixed Alignment */
+.donor-info {
+  margin-bottom: 25px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.donor-field {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+.field-icon {
+  color: #ff6b6b;
+  font-size: 1.2rem;
+  margin-top: 2px;
+  flex-shrink: 0;
+  width: 20px;
+  text-align: center;
+}
+
+.donor-name {
+  font-weight: 700;
+  color: #2d3436;
+  margin: 0;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.donor-age,
+.donor-email,
+.donor-phone {
+  color: #636e72;
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.donor-email {
+  font-size: 0.9rem;
+}
+
+.donor-phone {
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+/* Request Button - Fixed at Bottom */
+.request-btn {
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 14px 20px;
+  font-weight: 600;
+  text-transform: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(78, 205, 196, 0.3);
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  font-size: 0.95rem;
+}
+
+.request-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+  background: linear-gradient(135deg, #44a08d, #3a8c7a);
+}
+
+.no-donors-card {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 107, 107, 0.1);
+  text-align: center;
+  padding: 60px 40px;
+}
+
+.no-donors-text {
+  color: #2d3436;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.no-donors-subtext {
+  color: #636e72;
+}
+
+/* Request Dialog Styles */
+.request-dialog .MuiDialog-paper {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  max-width: 800px;
+}
+
+.dialog-title {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  font-weight: 600;
+  padding: 25px 30px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.dialog-content {
+  padding: 30px !important;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+.donor-summary {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 12px;
+  border-left: 4px solid #ff6b6b;
+  margin-bottom: 20px;
+}
+
+.summary-title {
+  color: #2d3436;
+  margin-bottom: 15px !important;
+  font-weight: 600;
+}
+
+.summary-details {
+  margin-top: 10px;
+}
+
+.summary-details .MuiGrid-item {
+  display: flex;
+  align-items: center;
+}
+
+.form-title {
+  color: #2d3436;
+  font-weight: 600;
+  border-bottom: 2px solid #ff6b6b;
+  padding-bottom: 8px;
+}
+
+.dialog-field .MuiOutlinedInput-root {
+  border-radius: 12px;
+  background: #fff;
+}
+
+.dialog-field .MuiInputLabel-root {
+  font-weight: 500;
+}
+
+.dialog-field .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ff6b6b;
+  border-width: 2px;
+}
+
+.dialog-field .MuiInputLabel-root.Mui-focused {
+  color: #ff6b6b;
+}
+
+.dialog-actions {
+  padding: 20px 30px 30px !important;
+  gap: 15px;
+  display: flex;
+  justify-content: flex-end;
+  border-top: 1px solid #e9ecef;
+}
+
+.cancel-btn {
+  color: #636e72;
+  border: 1px solid #dfe6e9;
+  border-radius: 8px;
+  padding: 10px 24px;
+  text-transform: none;
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.cancel-btn:hover {
+  background: #f8f9fa;
+}
+
+.submit-request-btn {
+  background: linear-gradient(135deg, #ff6b6b, #ff4757);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 24px;
+  text-transform: none;
+  font-weight: 600;
+  min-width: 120px;
+}
+
+.submit-request-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, #ff4757, #ff3838);
+}
+
+.submit-request-btn:disabled {
+  background: #b2bec3;
+  color: #636e72;
+}
+
+/* Loading State */
+.donor-list-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  gap: 20px;
+}
+
+.loading-text {
+  color: #636e72;
+}
+
+/* Ensure equal card heights */
+.MuiGrid-item {
+  display: flex;
+}
+
+.donor-card {
+  width: 100%;
+}
+
+/* Grid item alignment fix */
+.MuiGrid-spacing-xs-2 > .MuiGrid-item {
+  padding: 12px;
+}
+
+/* Ensure consistent card heights across different content lengths */
+.donors-grid .MuiGrid-item {
+  display: flex;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .donor-list-container {
+    padding: 20px 15px;
+  }
+
+  .donor-list-title {
+    font-size: 2.2rem;
+  }
+
+  .donor-list-stats {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+  }
+
+  .stat-card {
+    min-width: auto;
+    padding: 15px;
+  }
+
+  .stat-number {
+    font-size: 2rem;
+  }
+
+  .search-filter-content {
+    padding: 20px !important;
+  }
+
+  .donor-card-content {
+    padding: 35px 20px 20px 20px !important;
+  }
+
+  /* Adjusted blood group badge for mobile */
+  .blood-group-badge {
+    right: 15px;
+    padding: 8px 14px;
+    font-size: 1rem;
+    min-width: 70px;
+    top: -12px;
+  }
+
+  .donor-field {
+    gap: 10px;
+  }
+
+  .field-icon {
+    font-size: 1.1rem;
+    width: 18px;
+  }
+
+  .donor-name {
+    font-size: 1.2rem;
+  }
+
+  .donor-age,
+  .donor-email,
+  .donor-phone {
+    font-size: 0.9rem;
+  }
+
+  .floating-blood {
+    display: none;
+  }
+
+  .request-dialog .MuiDialog-paper {
+    margin: 20px;
+    width: calc(100% - 40px);
+  }
+}
+
+@media (max-width: 480px) {
+  .donor-list-title {
+    font-size: 1.8rem;
+  }
+
+  .donor-list-subtitle {
+    font-size: 1rem;
+  }
+
+  .donor-card-content {
+    padding: 30px 15px 15px 15px !important;
+  }
+
+  .donor-info {
+    gap: 12px;
+  }
+
+  .request-btn {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+    min-height: 44px;
+  }
+
+  .blood-group-badge {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    min-width: 60px;
+    top: -10px;
+  }
+}
